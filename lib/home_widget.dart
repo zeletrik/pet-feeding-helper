@@ -27,12 +27,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title,  style: TextStyle(color: Colors.white.withOpacity(1.0)),
-        ),
-        backgroundColor: Color.fromARGB(240, 54, 55, 58),
-        centerTitle: false,
-      ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
@@ -42,16 +36,16 @@ class _HomeState extends State<Home> {
         unselectedItemColor: Color.fromARGB(255, 153, 159, 165),
         items: [
           new BottomNavigationBarItem(
-            icon: Icon(Icons.pets),
-            title: Text('Feed'),
+            icon: Icon(Icons.set_meal),
+            label: 'Home',
           ),
           new BottomNavigationBarItem(
-            icon: Icon(Icons.timelapse),
-            title: Text('Today'),
+            icon: Icon(Icons.assignment),
+            label: 'Upcoming',
           ),
           new BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings')
+              icon: Icon(Icons.pets),
+              label: 'Pets'
           )
         ],
       ),
