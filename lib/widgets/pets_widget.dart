@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class SettingsWidget extends StatelessWidget {
+class PetsWidget extends StatelessWidget {
   final Color color;
   final String title = 'Pets';
 
-  SettingsWidget(this.color);
+  PetsWidget(this.color);
 
   @override
   Widget build(BuildContext context) => new Scaffold(
-        backgroundColor: color,
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
           title: Text(
-            title,
-            style: TextStyle(color: Colors.white.withOpacity(1.0)),
+              title,
+              style: Theme.of(context).textTheme.headline1
           ),
-          actions: [
-            IconButton(icon: Icon(Icons.settings, color: Colors.white)),
-          ],
-          backgroundColor: Color.fromARGB(60, 54, 55, 58),
           centerTitle: false,
+          brightness: Theme.of(context).brightness,
+          backgroundColor: Theme.of(context).backgroundColor,
+          shadowColor: Theme.of(context).backgroundColor,
+          elevation: 0,
+          actions: [
+            IconButton(
+              icon: Icon(
+                  Icons.settings,
+                  color: Theme.of(context).textTheme.headline1.color
+              ),
+              onPressed: () {
+                /* TODO */
+              },
+            ),
+          ],
         ),
         body: CustomScrollView(
           slivers: <Widget>[
@@ -39,8 +50,8 @@ class SettingsWidget extends StatelessWidget {
   Widget _getPetCard(int index, BuildContext context) {
     return CupertinoButton(
       child: Container(
-        height: 150,
-        width: 150,
+        height: 250,
+        width: 250,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/cat.jpg"),

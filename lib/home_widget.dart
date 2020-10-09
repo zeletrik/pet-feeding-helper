@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:petfeeder/widgets/feeding_widget.dart';
-import 'package:petfeeder/widgets/today_widget.dart';
-import 'widgets/settings_widget.dart';
+import 'package:petfeeder/widgets/main_widget.dart';
+import 'package:petfeeder/widgets/upnext_widget.dart';
+import 'widgets/pets_widget.dart';
 
 // ignore: must_be_immutable
 class Home extends StatefulWidget {
@@ -19,9 +19,9 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    FeedingWidget(Color.fromARGB(255, 32, 33, 36)),
-    TodayWidget(Color.fromARGB(255, 32, 33, 36)),
-    SettingsWidget(Color.fromARGB(255, 32, 33, 36))
+    MainWidget(Color.fromARGB(255, 32, 33, 36)),
+    UpnextWidget(Color.fromARGB(255, 32, 33, 36)),
+    PetsWidget(Color.fromARGB(255, 32, 33, 36))
   ];
 
   @override
@@ -31,8 +31,9 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-        backgroundColor: Color.fromARGB(220, 54, 55, 58),
-        selectedItemColor: Colors.lightBlueAccent,
+        backgroundColor:  Theme.of(context).dividerColor,
+        //backgroundColor: Color.fromARGB(220, 54, 55, 58),
+        selectedItemColor: Colors.blue,
         unselectedItemColor: Color.fromARGB(255, 153, 159, 165),
         items: [
           new BottomNavigationBarItem(

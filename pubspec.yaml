@@ -17,6 +17,8 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  shared_preferences: ^0.5.12
+  cupertino_rounded_corners: ^1.0.3
   flutter:
     sdk: flutter
 
@@ -43,6 +45,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/cat.jpg
+    - assets/red.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
