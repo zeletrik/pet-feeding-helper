@@ -68,7 +68,7 @@ class MainWidget extends StatelessWidget {
                           value: 0.7,
                           strokeWidth: 8,
                           valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.blue),
+                              new AlwaysStoppedAnimation<Color>(Color(0xFF95DBE5)),
                         ),
                         height: 200.0,
                         width: 200.0,
@@ -84,7 +84,7 @@ class MainWidget extends StatelessWidget {
                           value: 0.5,
                           strokeWidth: 8,
                           valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.green),
+                              new AlwaysStoppedAnimation<Color>(Color(0xFF078282)),
                         ),
                         height: 170.0,
                         width: 170.0,
@@ -100,7 +100,7 @@ class MainWidget extends StatelessWidget {
                           value: 0.85,
                           strokeWidth: 8,
                           valueColor:
-                              new AlwaysStoppedAnimation<Color>(Colors.red),
+                              new AlwaysStoppedAnimation<Color>(Color(0xFF339E66)),
                         ),
                         height: 140.0,
                         width: 140.0,
@@ -204,9 +204,34 @@ class MainWidget extends StatelessWidget {
         elevation: 2.0,
         margin: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
         padding: const EdgeInsets.all(0.0),
-        color: i.isEven ? Colors.red : Colors.green,
+        color: i.isEven ? Color(0xFF95DBE5) : Color(0xFF078282),
         radius: 20.0,
       )));
+      listItems.add(
+          Center(
+              child: CupertinoCard(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(
+                        Icons.waves,
+                        color: Theme.of(context).backgroundColor,
+                      ),
+                      title: Text('Water intake ${i.toString()} g',
+                          style: TextStyle(color: Theme.of(context).backgroundColor)),
+                      subtitle: Text('Overall progress: ${i.toString()}%',
+                          style: TextStyle(color: Theme.of(context).backgroundColor)),
+                    ),
+                  ],
+                ),
+                elevation: 2.0,
+                margin: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
+                padding: const EdgeInsets.all(0.0),
+                color: Color(0xFF339E66),
+                radius: 20.0,
+              ))
+      );
     }
     return listItems;
   }

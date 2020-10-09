@@ -59,7 +59,7 @@ class UpnextWidget extends StatelessWidget {
                           elevation: 2.0,
                           margin: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
                           padding: const EdgeInsets.all(0.0),
-                          color: i.isEven ? Colors.red : Colors.green,
+                          color: i.isEven ? Color(0xFF184A45) : Color(0xFFB0B8B4),
                           radius: 20.0,
                         )),
             childCount: 15,
