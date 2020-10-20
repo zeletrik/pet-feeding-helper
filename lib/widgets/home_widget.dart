@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:cupertino_rounded_corners/cupertino_rounded_corners.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:petfeeder/domain/CardDetail.dart';
 import 'package:petfeeder/domain/RingDetail.dart';
 import 'package:petfeeder/widgets/common/rings.dart';
+
+import 'common/item_card.dart';
 
 class HomeWidget extends StatelessWidget {
   final Color color;
@@ -34,7 +37,7 @@ class HomeWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
-                 // Icon(Icons.pets, color: Theme.of(context).textTheme.headline1.color),
+                  // Icon(Icons.pets, color: Theme.of(context).textTheme.headline1.color),
                   onPressed: () {
                     showCupertinoModalPopup(
                         context: context,
@@ -62,23 +65,20 @@ class HomeWidget extends StatelessWidget {
                                   Navigator.pop(context, 'Cancel');
                                 },
                               ),
-                            ));
+                        ));
                   },
                 ),
               ],
             ),
             SliverToBoxAdapter(
-              child: Rings(
-                  ringDetails: [
-                      RingDetail( Color(0xFF95DBE5), 0.7 ),
-                      RingDetail( Color(0xFF078282), 0.3 ),
-                      RingDetail( Color(0xFF339E66), 0.2 ),
-                      RingDetail( Color(0xFF95DBE5), 0.7 ),
-                      RingDetail( Color(0xFF078282), 0.4 ),
-                      RingDetail( Color(0xFF339E66), 0.9 ),
-                      ]
-                  )
-            ),
+                child: Rings(ringDetails: [
+                  RingDetail(Color(0xFF95DBE5), 0.7),
+                  RingDetail(Color(0xFF078282), 0.3),
+                  RingDetail(Color(0xFF339E66), 0.2),
+                  RingDetail(Color(0xFF95DBE5), 0.7),
+                  RingDetail(Color(0xFF078282), 0.4),
+                  RingDetail(Color(0xFF339E66), 0.9),
+                ])),
             SliverToBoxAdapter(
               child: Center(
                 child: CupertinoCard(
@@ -88,7 +88,9 @@ class HomeWidget extends StatelessWidget {
                       ListTile(
                         title: Text('Pet name',
                             style: TextStyle(
-                                color: Theme.of(context).backgroundColor)),
+                                color: Theme
+                                    .of(context)
+                                    .backgroundColor)),
                         subtitle: Text('Overall progress: 85%',
                             style: TextStyle(
                                 color: Theme.of(context).backgroundColor)),
@@ -127,24 +129,26 @@ class HomeWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 builder: (BuildContext bc) =>
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.9,
-                    color: Colors.transparent, //could change this to Color(0xFF737373),
-                    //so you don't have to change MaterialApp canvasColor
-                    child: Align(
-                      alignment: Alignment(0.0, -0.98),
-                      child: Container(
-                        height: 5,
-                        width: 100,
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(15.0),
+                    Container(
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height * 0.9,
+                      color: Colors.transparent,
+                      //could change this to Color(0xFF737373),
+                      //so you don't have to change MaterialApp canvasColor
+                      child: Align(
+                        alignment: Alignment(0.0, -0.98),
+                        child: Container(
+                          height: 5,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
                         ),
                       ),
-                    ),
-                  )
-
-                );
+                    ));
           },
         ),
       );
@@ -153,57 +157,18 @@ class HomeWidget extends StatelessWidget {
     List<Widget> listItems = List();
 
     for (int i = 0; i < count; i++) {
-      listItems.add(Center(
-          child: CupertinoCard(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            ListTile(
-              leading: Icon(
-                i.isEven ? Icons.medical_services_outlined : Icons.restaurant,
-                color: Theme.of(context).backgroundColor,
-              ),
-              title: Text(
-                  i.isEven
-                      ? 'Medication intake ${i.toString()} g'
-                      : 'Food intake ${i.toString()} g',
-                  style: TextStyle(color: Theme.of(context).backgroundColor)),
-              subtitle: Text('Overall progress: ${i.toString()}%',
-                  style: TextStyle(color: Theme.of(context).backgroundColor)),
-            ),
-          ],
-        ),
-        elevation: 2.0,
-        margin: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
-        padding: const EdgeInsets.all(0.0),
-        color: i.isEven ? Color(0xFF95DBE5) : Color(0xFF078282),
-        radius: 20.0,
-      )));
-      listItems.add(
-          Center(
-              child: CupertinoCard(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(
-                        Icons.waves,
-                        color: Theme.of(context).backgroundColor,
-                      ),
-                      title: Text('Water intake ${i.toString()} g',
-                          style: TextStyle(color: Theme.of(context).backgroundColor)),
-                      subtitle: Text('Overall progress: ${i.toString()}%',
-                          style: TextStyle(color: Theme.of(context).backgroundColor)),
-                    ),
-                  ],
-                ),
-                elevation: 2.0,
-                margin: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
-                padding: const EdgeInsets.all(0.0),
-                color: Color(0xFF339E66),
-                radius: 20.0,
-              ))
-      );
+      listItems.add(ItemCard(
+          cardDetail: CardDetail(
+              i.isEven ? Icons.medical_services_outlined : Icons.restaurant,
+              i.isEven
+                  ? 'Medication intake ${i.toString()} g'
+                  : 'Food intake ${i.toString()} g',
+              'Overall progress: ${i.toString()}%',
+              '10:30',
+              i.isEven ? Color(0xFF95DBE5) : Color(0xFF078282))));
+      listItems.add(ItemCard(
+          cardDetail: CardDetail(Icons.waves, 'Water intake 20 g',
+              'Overall progress: 3%', '10:30', Color(0xFF339E66))));
     }
     return listItems;
   }

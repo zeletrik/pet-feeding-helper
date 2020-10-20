@@ -1,27 +1,70 @@
-import 'package:flutter/material.dart';
 import 'package:cupertino_rounded_corners/cupertino_rounded_corners.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class UpnextWidget extends StatelessWidget {
+class HistoryWidget extends StatelessWidget {
   final Color color;
-  final String title = 'Next up';
+  final String title = 'History';
 
-  UpnextWidget(this.color);
+  HistoryWidget(this.color);
 
   @override
   Widget build(BuildContext context) => new Scaffold(
-    backgroundColor: Theme.of(context).backgroundColor,
-    body: CustomScrollView(
-      slivers: <Widget>[
-        SliverAppBar(
-          title: Text(title,
-              style: Theme.of(context).textTheme.headline1
-          ),
-          centerTitle: false,
-          brightness: Theme.of(context).brightness,
-          backgroundColor: Theme.of(context).backgroundColor,
-          floating: true,
-          expandedHeight: 50,
-        ),
+        backgroundColor: Theme.of(context).backgroundColor,
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              title: Text(title, style: Theme.of(context).textTheme.headline1),
+              centerTitle: false,
+              brightness: Theme.of(context).brightness,
+              backgroundColor: Theme.of(context).backgroundColor,
+              floating: true,
+              expandedHeight: 50,
+              actions: [
+                IconButton(
+                  icon: Container(
+                    height: 34,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/cat.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  // Icon(Icons.pets, color: Theme.of(context).textTheme.headline1.color),
+                  onPressed: () {
+                    showCupertinoModalPopup(
+                        context: context,
+                        builder: (BuildContext context) => CupertinoActionSheet(
+                              title: const Text('Pet chooser'),
+                              message: const Text('Your pets are'),
+                              actions: <Widget>[
+                                CupertinoActionSheetAction(
+                                  child: const Text('Pet #1'),
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Pet1');
+                                  },
+                                ),
+                                CupertinoActionSheetAction(
+                                  child: const Text('Pet #2'),
+                                  onPressed: () {
+                                    Navigator.pop(context, 'pet2');
+                                  },
+                                )
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                child: const Text('Cancel'),
+                                isDefaultAction: true,
+                                onPressed: () {
+                                  Navigator.pop(context, 'Cancel');
+                                },
+                              ),
+                            ));
+                  },
+                ),
+              ],
+            ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
                 (context, i) =>
