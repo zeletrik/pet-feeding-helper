@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cupertino_rounded_corners/cupertino_rounded_corners.dart';
+import 'package:petfeeder/domain/RingDetail.dart';
+import 'package:petfeeder/widgets/common/rings.dart';
 
-class MainWidget extends StatelessWidget {
+class HomeWidget extends StatelessWidget {
   final Color color;
   final String title = 'Feeding';
 
-  MainWidget(this.color);
+  HomeWidget(this.color);
 
   @override
   Widget build(BuildContext context) => new Scaffold(
@@ -22,8 +24,17 @@ class MainWidget extends StatelessWidget {
               expandedHeight: 50,
               actions: [
                 IconButton(
-                  icon: Icon(Icons.pets,
-                      color: Theme.of(context).textTheme.headline1.color),
+                  icon: Container(
+                    height: 34,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/cat.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                 // Icon(Icons.pets, color: Theme.of(context).textTheme.headline1.color),
                   onPressed: () {
                     showCupertinoModalPopup(
                         context: context,
@@ -57,79 +68,16 @@ class MainWidget extends StatelessWidget {
               ],
             ),
             SliverToBoxAdapter(
-              child: Stack(
-                children: [
-                  ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxHeight: 220.0, minHeight: 220.0),
-                    child: Center(
-                      child: SizedBox(
-                        child: CircularProgressIndicator(
-                          value: 0.7,
-                          strokeWidth: 8,
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Color(0xFF95DBE5)),
-                        ),
-                        height: 200.0,
-                        width: 200.0,
-                      ),
-                    ),
-                  ),
-                  ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxHeight: 220.0, minHeight: 220.0),
-                    child: Center(
-                      child: SizedBox(
-                        child: CircularProgressIndicator(
-                          value: 0.5,
-                          strokeWidth: 8,
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Color(0xFF078282)),
-                        ),
-                        height: 170.0,
-                        width: 170.0,
-                      ),
-                    ),
-                  ),
-                  ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxHeight: 220.0, minHeight: 220.0),
-                    child: Center(
-                      child: SizedBox(
-                        child: CircularProgressIndicator(
-                          value: 0.85,
-                          strokeWidth: 8,
-                          valueColor:
-                              new AlwaysStoppedAnimation<Color>(Color(0xFF339E66)),
-                        ),
-                        height: 140.0,
-                        width: 140.0,
-                      ),
-                    ),
-                  ),
-                  ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxHeight: 220.0, minHeight: 220.0),
-                    child: Center(
-                      child: SizedBox(
-                        child: Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage("assets/cat.jpg"),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                        ),
-                        height: 100.0,
-                        width: 100.0,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: Rings(
+                  ringDetails: [
+                      RingDetail( Color(0xFF95DBE5), 0.7 ),
+                      RingDetail( Color(0xFF078282), 0.3 ),
+                      RingDetail( Color(0xFF339E66), 0.2 ),
+                      RingDetail( Color(0xFF95DBE5), 0.7 ),
+                      RingDetail( Color(0xFF078282), 0.4 ),
+                      RingDetail( Color(0xFF339E66), 0.9 ),
+                      ]
+                  )
             ),
             SliverToBoxAdapter(
               child: Center(
@@ -172,7 +120,31 @@ class MainWidget extends StatelessWidget {
           tooltip: 'Increment',
           child: Icon(Icons.add),
           onPressed: () {
-            /* TODO */
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                builder: (BuildContext bc) =>
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.9,
+                    color: Colors.transparent, //could change this to Color(0xFF737373),
+                    //so you don't have to change MaterialApp canvasColor
+                    child: Align(
+                      alignment: Alignment(0.0, -0.98),
+                      child: Container(
+                        height: 5,
+                        width: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                    ),
+                  )
+
+                );
           },
         ),
       );

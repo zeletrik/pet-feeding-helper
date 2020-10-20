@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_widget.dart';
+import 'parent_widget.dart';
 import 'themes.dart';
 
 void main() => runApp(PetFeederApp());
@@ -12,7 +12,7 @@ class PetFeederApp extends StatelessWidget {
       title: 'Pet feeder helper',
       theme: setLightTheme,
       darkTheme: setDarkTheme,
-      home: Home(title: 'Pet feeder helper'),
+      home: Parent(title: 'Pet feeder helper'),
     );
   }
 }

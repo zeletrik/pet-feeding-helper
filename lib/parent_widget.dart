@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:petfeeder/widgets/main_widget.dart';
-import 'package:petfeeder/widgets/upnext_widget.dart';
+import 'package:petfeeder/widgets/home_widget.dart';
+import 'package:petfeeder/widgets/history_widget.dart';
 import 'widgets/pets_widget.dart';
 
 // ignore: must_be_immutable
-class Home extends StatefulWidget {
-  Home({Key key, this.title}) : super(key: key);
+class Parent extends StatefulWidget {
+  Parent({Key key, this.title}) : super(key: key);
 
   String title;
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeState();
+    return _ParentState();
   }
 }
 
-class _HomeState extends State<Home> {
+class _ParentState extends State<Parent> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    MainWidget(Color.fromARGB(255, 32, 33, 36)),
-    UpnextWidget(Color.fromARGB(255, 32, 33, 36)),
+    HomeWidget(Color.fromARGB(255, 32, 33, 36)),
+    HistoryWidget(Color.fromARGB(255, 32, 33, 36)),
     PetsWidget(Color.fromARGB(255, 32, 33, 36))
   ];
 
@@ -37,12 +37,12 @@ class _HomeState extends State<Home> {
         unselectedItemColor: Color.fromARGB(255, 153, 159, 165),
         items: [
           new BottomNavigationBarItem(
-            icon: Icon(Icons.set_meal),
-            label: 'Home',
+            icon: Icon(Icons.today),
+            label: 'Today',
           ),
           new BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
-            label: 'Upcoming',
+            label: 'History',
           ),
           new BottomNavigationBarItem(
               icon: Icon(Icons.pets),
