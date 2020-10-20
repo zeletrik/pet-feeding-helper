@@ -1,6 +1,9 @@
-import 'package:cupertino_rounded_corners/cupertino_rounded_corners.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:petfeeder/domain/CardDetail.dart';
+import 'package:petfeeder/domain/DayWrapper.dart';
+
+import '../day_builder.dart';
 
 class HistoryWidget extends StatelessWidget {
   final Color color;
@@ -60,55 +63,35 @@ class HistoryWidget extends StatelessWidget {
                                   Navigator.pop(context, 'Cancel');
                                 },
                               ),
-                            ));
+                        ));
                   },
                 ),
               ],
             ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-                (context, i) =>
-                    Center(
-                        child: CupertinoCard(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              ListTile(
-                                leading: Icon(
-                                  i.isEven ? Icons.medical_services_outlined : Icons.restaurant,
-                                  color: Theme.of(context).backgroundColor,
-                                ),
-                                title: Text(
-                                    i.isEven
-                                        ? 'Medication intake ${i.toString()} g'
-                                        : 'Food intake ${i.toString()} g',
-                                    style: TextStyle(color: Theme.of(context).backgroundColor)),
-                                subtitle: Text('Overall progress: ${i.toString()}%',
-                                    style: TextStyle(color: Theme.of(context).backgroundColor)),
-                                  trailing: Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage("assets/cat.jpg"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                  ),
-                              ),
-                            ],
-                          ),
-                          elevation: 2.0,
-                          margin: const EdgeInsets.fromLTRB(6.0, 3.0, 6.0, 0.0),
-                          padding: const EdgeInsets.all(0.0),
-                          color: i.isEven ? Color(0xFF184A45) : Color(0xFFB0B8B4),
-                          radius: 20.0,
-                        )),
-            childCount: 15,
-          ),
+            SliverList(
+                delegate: SliverChildListDelegate(DayBuilder(wrappers: [
+                  DayWrapper(date: DateTime.now(), cardDetails: [
+                    CardDetail(Icons.waves, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                    CardDetail(Icons.waves, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                    CardDetail(Icons.waves, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                    CardDetail(Icons.waves, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                  ]),
+                  DayWrapper(date: DateTime.now(), cardDetails: [
+                    CardDetail(Icons.favorite_border_sharp, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                    CardDetail(Icons.favorite_border_sharp, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                    CardDetail(Icons.waves, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                    CardDetail(Icons.favorite_border_sharp, 'Water intake 20 g',
+                        'Overall progress: 3%', '10:30', Color(0xFF339E66)),
+                  ])
+                ]).buildDayList(context))),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cupertino_rounded_corners/cupertino_rounded_corners.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +7,12 @@ import 'package:petfeeder/domain/CardDetail.dart';
 import 'package:petfeeder/domain/RingDetail.dart';
 import 'package:petfeeder/widgets/common/rings.dart';
 
+import 'common/add_bottom_sheet.dart';
 import 'common/item_card.dart';
 
 class HomeWidget extends StatelessWidget {
   final Color color;
-  final String title = 'Feeding';
+  final String title = 'Today';
 
   HomeWidget(this.color);
 
@@ -37,34 +40,35 @@ class HomeWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
-                  // Icon(Icons.pets, color: Theme.of(context).textTheme.headline1.color),
                   onPressed: () {
                     showCupertinoModalPopup(
                         context: context,
                         builder: (BuildContext context) => CupertinoActionSheet(
-                              title: const Text('Pet chooser'),
-                              message: const Text('Your pets are'),
-                              actions: <Widget>[
-                                CupertinoActionSheetAction(
-                                  child: const Text('Pet #1'),
-                                  onPressed: () {
-                                    Navigator.pop(context, 'Pet1');
-                                  },
-                                ),
-                                CupertinoActionSheetAction(
-                                  child: const Text('Pet #2'),
-                                  onPressed: () {
-                                    Navigator.pop(context, 'pet2');
-                                  },
-                                )
-                              ],
-                              cancelButton: CupertinoActionSheetAction(
-                                child: const Text('Cancel'),
-                                isDefaultAction: true,
-                                onPressed: () {
-                                  Navigator.pop(context, 'Cancel');
-                                },
-                              ),
+                          title: const Text('Pet chooser'),
+                          message: const Text('Your pets are'),
+                          actions: <Widget>[
+                            CupertinoActionSheetAction(
+                              child: const Text('Pet #1'),
+                              onPressed: () {
+                                switchPet('Pet1');
+                                Navigator.pop(context, 'Pet1');
+                              },
+                            ),
+                            CupertinoActionSheetAction(
+                              child: const Text('Pet #2'),
+                              onPressed: () {
+                                switchPet('Pet2');
+                                Navigator.pop(context, 'Pet2');
+                              },
+                            )
+                          ],
+                          cancelButton: CupertinoActionSheetAction(
+                            child: const Text('Cancel'),
+                            isDefaultAction: true,
+                            onPressed: () {
+                              Navigator.pop(context, 'Cancel');
+                            },
+                          ),
                         ));
                   },
                 ),
@@ -130,25 +134,14 @@ class HomeWidget extends StatelessWidget {
                 ),
                 builder: (BuildContext bc) =>
                     Container(
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height * 0.9,
-                      color: Colors.transparent,
-                      //could change this to Color(0xFF737373),
-                      //so you don't have to change MaterialApp canvasColor
-                      child: Align(
-                        alignment: Alignment(0.0, -0.98),
-                        child: Container(
-                          height: 5,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                        ),
-                      ),
-                    ));
+                        height: MediaQuery
+                            .of(context)
+                            .size
+                            .height * 0.9,
+                        color: Colors.transparent,
+                        child: AddIntakeBottomSheet()
+                    )
+            );
           },
         ),
       );
@@ -171,5 +164,9 @@ class HomeWidget extends StatelessWidget {
               'Overall progress: 3%', '10:30', Color(0xFF339E66))));
     }
     return listItems;
+  }
+
+  void switchPet(String name) {
+    log('Switch to pet ${name}');
   }
 }

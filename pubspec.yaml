@@ -19,6 +19,7 @@ environment:
 dependencies:
   shared_preferences: ^0.5.12
   cupertino_rounded_corners: ^1.0.3
+  intl: ^0.16.1
   flutter:
     sdk: flutter
 
