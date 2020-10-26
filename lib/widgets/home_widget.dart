@@ -44,45 +44,45 @@ class HomeWidget extends StatelessWidget {
                     showCupertinoModalPopup(
                         context: context,
                         builder: (BuildContext context) => CupertinoActionSheet(
-                          title: const Text('Pet chooser'),
-                          message: const Text('Your pets are'),
-                          actions: <Widget>[
-                            CupertinoActionSheetAction(
-                              child: const Text('Pet #1'),
-                              onPressed: () {
-                                switchPet('Pet1');
-                                Navigator.pop(context, 'Pet1');
-                              },
-                            ),
-                            CupertinoActionSheetAction(
-                              child: const Text('Pet #2'),
-                              onPressed: () {
-                                switchPet('Pet2');
-                                Navigator.pop(context, 'Pet2');
-                              },
-                            )
-                          ],
-                          cancelButton: CupertinoActionSheetAction(
-                            child: const Text('Cancel'),
-                            isDefaultAction: true,
-                            onPressed: () {
-                              Navigator.pop(context, 'Cancel');
-                            },
-                          ),
-                        ));
+                              title: const Text('Pet chooser'),
+                              message: const Text('Your pets are'),
+                              actions: <Widget>[
+                                CupertinoActionSheetAction(
+                                  child: const Text('Pet #1'),
+                                  onPressed: () {
+                                    switchPet('Pet1');
+                                    Navigator.pop(context, 'Pet1');
+                                  },
+                                ),
+                                CupertinoActionSheetAction(
+                                  child: const Text('Pet #2'),
+                                  onPressed: () {
+                                    switchPet('Pet2');
+                                    Navigator.pop(context, 'Pet2');
+                                  },
+                                )
+                              ],
+                              cancelButton: CupertinoActionSheetAction(
+                                child: const Text('Cancel'),
+                                isDefaultAction: true,
+                                onPressed: () {
+                                  Navigator.pop(context, 'Cancel');
+                                },
+                              ),
+                            ));
                   },
                 ),
               ],
             ),
             SliverToBoxAdapter(
                 child: Rings(ringDetails: [
-                  RingDetail(Color(0xFF95DBE5), 0.7),
-                  RingDetail(Color(0xFF078282), 0.3),
-                  RingDetail(Color(0xFF339E66), 0.2),
-                  RingDetail(Color(0xFF95DBE5), 0.7),
-                  RingDetail(Color(0xFF078282), 0.4),
-                  RingDetail(Color(0xFF339E66), 0.9),
-                ])),
+              RingDetail(Color(0xFF95DBE5), 0.7),
+              RingDetail(Color(0xFF078282), 0.3),
+              RingDetail(Color(0xFF339E66), 0.2),
+              RingDetail(Color(0xFF95DBE5), 0.7),
+              RingDetail(Color(0xFF078282), 0.4),
+              RingDetail(Color(0xFF339E66), 0.9),
+            ])),
             SliverToBoxAdapter(
               child: Center(
                 child: CupertinoCard(
@@ -92,9 +92,7 @@ class HomeWidget extends StatelessWidget {
                       ListTile(
                         title: Text('Pet name',
                             style: TextStyle(
-                                color: Theme
-                                    .of(context)
-                                    .backgroundColor)),
+                                color: Theme.of(context).backgroundColor)),
                         subtitle: Text('Overall progress: 85%',
                             style: TextStyle(
                                 color: Theme.of(context).backgroundColor)),
@@ -110,8 +108,28 @@ class HomeWidget extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Align(
+                  alignment: Alignment(-0.95, 0.0),
+                  child: Text('Scheduled',
+                      style: TextStyle(
+                          color: Theme
+                              .of(context)
+                              .textTheme
+                              .headline1
+                              .color))),
+            ),
+            SliverToBoxAdapter(
               child: Divider(
-                color: Theme.of(context).textTheme.headline1.color,
+                color: Theme
+                    .of(context)
+                    .textTheme
+                    .headline1
+                    .color,
                 height: 15,
                 thickness: 0.5,
                 indent: 5,
@@ -139,16 +157,30 @@ class HomeWidget extends StatelessWidget {
                             .size
                             .height * 0.9,
                         color: Colors.transparent,
-                        child: AddIntakeBottomSheet()
-                    )
-            );
+                        child: Column(
+                          children: [
+                            Align(
+                              alignment: Alignment(0.0, -0.90),
+                              child: Container(
+                                height: 5,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: AddIntakeBottomSheet(),
+                            )
+                          ],
+                        )));
           },
         ),
       );
 
   List _buildList(int count, BuildContext context) {
     List<Widget> listItems = List();
-
     for (int i = 0; i < count; i++) {
       listItems.add(ItemCard(
           cardDetail: CardDetail(

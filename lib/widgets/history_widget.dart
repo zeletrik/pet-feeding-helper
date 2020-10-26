@@ -80,7 +80,9 @@ class HistoryWidget extends StatelessWidget {
                     CardDetail(Icons.waves, 'Water intake 20 g',
                         'Overall progress: 3%', '10:30', Color(0xFF339E66)),
                   ]),
-                  DayWrapper(date: DateTime.now(), cardDetails: [
+                  DayWrapper(
+                  date: DateTime.now().subtract(Duration(days: 1)),
+                  cardDetails: [
                     CardDetail(Icons.favorite_border_sharp, 'Water intake 20 g',
                         'Overall progress: 3%', '10:30', Color(0xFF339E66)),
                     CardDetail(Icons.favorite_border_sharp, 'Water intake 20 g',
@@ -90,7 +92,7 @@ class HistoryWidget extends StatelessWidget {
                     CardDetail(Icons.favorite_border_sharp, 'Water intake 20 g',
                         'Overall progress: 3%', '10:30', Color(0xFF339E66)),
                   ])
-                ]).buildDayList(context))),
+            ]).buildDayList(context))),
           ],
         ),
       );

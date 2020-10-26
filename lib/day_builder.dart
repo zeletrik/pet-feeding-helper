@@ -42,6 +42,11 @@ class DayBuilder {
 
   String formatDate(DateTime date) {
     var formatter = new DateFormat.yMMMMd(Intl.systemLocale);
-    return formatter.format(date);
+    var formatted = formatter.format(date);
+    var result = formatted;
+    if (formatted == formatter.format(DateTime.now())) {
+      result = 'Today';
+    }
+    return result;
   }
 }
