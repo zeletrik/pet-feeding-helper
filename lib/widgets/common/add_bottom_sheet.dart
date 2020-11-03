@@ -182,16 +182,15 @@ class _IntakeWidgetState extends State<IntakeWidget> {
                       showModalBottomSheet(
                           context: context,
                           builder: (BuildContext context) => Container(
-                              height: MediaQuery.of(context).size.height * 0.15,
+                              height: MediaQuery.of(context).size.height * 0.2,
                               color: Colors.transparent,
                               child: CupertinoPicker(
-                                backgroundColor: Colors.white,
                                 onSelectedItemChanged: (value) {
                                   setState(() {
                                     currentValue = items.elementAt(value);
                                   });
                                 },
-                                itemExtent: 32.0,
+                                itemExtent: 42.0,
                                 children: List<Widget>.generate(items.length,
                                     (int index) {
                                   return Text(items[index]);
